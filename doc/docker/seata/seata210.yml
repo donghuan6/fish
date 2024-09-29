@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  seata:
+    image: apache/seata-server:2.1.0
+    container_name: seata210
+    ports:
+      - "7091:7091"
+      - "8091:8091"
+    environment:
+      - SEATA_PORT=8091
+      - SEATA_IP=192.168.0.15
+      - STORE_MODE=db
+      - SERVER_NODE=1
+      - SEATA_ENV=test # 环境变量
+    volumes:
+      - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime # 设置系统时区
+      - /usr/share/zoneinfo/Asia/Shanghai:/etc/timezone # 设置时区
+      - ./logs:/root/logs/seata # 日志
+      - ./application.yml:/seata-server/resources/application.yml # 自定义配置

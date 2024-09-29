@@ -1,0 +1,53 @@
+version: "3.8"
+services:
+  nacos:
+    image: nacos/nacos-server:v2.3.2
+    container_name: nacos232
+    # 8848: Nacos Server 的 HTTP API 和 Web UI 访问端口。
+    # 除此之外，如果您计划进行 Nacos 集群部署，还需要考虑以下端口（这些端口在单机模式下通常不需要开放）：
+    # 8849: Raft 协议的选举端口，用于集群成员间的通信和选举。
+    # 9848: Nacos 的健康检查端口，用于集群中各节点的健康监测。
+    # 9555: Nacos 客户端与服务端之间的心跳端口，在集群模式下用于客户端与各个节点保持心跳连接。
+    # raft-port: 集群模式下，每个节点还会使用一个额外的端口作为 Raft 协议的通信端口，这个端口需要在集群配置中指定，并且每个节点应该不同。
+    ports:
+      - "8848:8848"
+      - "9848:9848"
+    environment:
+      - MODE=standalone # 单机版
+      # 如果是集群版
+      # - NACOS_SERVERS=ip1:port1 ip2:port2 ip3:port3
+      - PREFER_HOST_MODE=192.168.0.15 # 是否支持主机名，默认 ip
+      - NACOS_APPLICATION_PORT=8848 # nacos server port，default 8848
+      - NACOS_SERVER_IP=192.168.0.15 # 网络为多网络时自定义nacos服务器 ip
+      - SPRING_DATASOURCE_PLATFORM=mysql # 数据库类型 standalone support mysql	mysql / empty default empty
+      - MYSQL_SERVICE_HOST=192.168.0.12
+      - MYSQL_SERVICE_PORT=3306
+      - MYSQL_SERVICE_DB_NAME=nacos
+      - MYSQL_SERVICE_USER=root
+      - MYSQL_SERVICE_PASSWORD=123456
+      - MYSQL_DATABASE_NUM=1 # 数据库数量
+      - MYSQL_SERVICE_DB_PARAM=characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true&useSSL=false
+      - JVM_XMS=1g
+      - JVM_XMX=1g
+      - JVM_XMN=512m
+      - JVM_MS=128m
+      - JVM_MMS=320m
+      - NACOS_DEBUG=n
+      - TOMCAT_ACCESSLOG_ENABLED=false
+      - NACOS_AUTH_SYSTEM_TYPE=nacos
+      - NACOS_AUTH_ENABLE=true
+      - NACOS_AUTH_TOKEN_EXPIRE_SECONDS=18000
+      - NACOS_AUTH_TOKEN=fanfanfan012345678901234567890123456789012345678901234567890123456789
+      - NACOS_AUTH_CACHE_ENABLE=false
+      # 集群列表
+      # - MEMBER_LIST=192.168.16.101:8847?raft_port=8807,192.168.16.101?raft_port=8808,192.168.16.101:8849?raft_port=8809
+      - NACOS_AUTH_IDENTITY_KEY=fan
+      - NACOS_AUTH_IDENTITY_VALUE=fan@fan@fan
+      - NACOS_SECURITY_IGNORE_URLS=/,/error,/**/*.css,/**/*.js,/**/*.html,/**/*.map,/**/*.svg,/**/*.png,/**/*.ico,/console-fe/public/**,/v1/auth/**,/v1/console/health/**,/actuator/**,/v1/console/server/**
+    volumes:
+      # 如果配置此 custom.properties，则会优于 /home/nacos/conf/application.properties 进行加载
+      #- ./nacos/custom.properties:/home/nacos/init.d/
+      # 如果以上环境变量 environment 设置够用，可以不用自行配置
+      #- ./conf:/home/nacos/conf
+      - ./logs:/home/nacos/logs
+

@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  jenkins:
+#    image: jenkins/jenkins:lts-jdk8
+    image: jenkins/jenkins:latest
+    container_name: jenkins
+    volumes:
+      # 将本地目录 ./jenkins_home 设置为 1000(chown -R 1000:1000 ./jenkins_home)
+      # 因为容器中的jenkins user的uid=1000
+      - ./jenkins_home:/var/jenkins_home
+      # 由于docker内无法感知宿主机的maven配置
+      - /usr/local/maven:/usr/local/maven
+    ports:
+      - "8080:8080"
+#    environment:
+#      - JAVA_OPTS=-Djenkins.install.runSetupWizard=false

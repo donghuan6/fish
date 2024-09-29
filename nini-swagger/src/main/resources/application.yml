@@ -1,0 +1,12 @@
+springdoc:
+  api-docs:
+    # 开启 openApi 接口
+    enabled: true
+    # 自定义路径，默认为 /v3/api-docs
+    path: /v3/api-docs
+  swagger-ui:
+    # 开启 swagger 界面，依赖 openApi，需要 OpenApi 同时开启
+    enabled: true
+    # 自定义路径，默认为 /swagger-ui/index.html
+    path: /swagger-ui/index.html
+

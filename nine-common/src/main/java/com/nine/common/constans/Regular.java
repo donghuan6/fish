@@ -15,4 +15,6 @@ public interface Regular {
      */
     String EMAIL = "^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$";
 
+
+
 }

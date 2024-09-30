@@ -21,7 +21,7 @@
         <module>nine-websocket</module>
         <module>nine-user</module>
         <module>nine-domain</module>
-        <module>nini-swagger</module>
+        <module>nine-swagger</module>
 
     </modules>
 

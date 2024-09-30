@@ -9,7 +9,7 @@
         <version>0.0.1</version>
     </parent>
 
-    <artifactId>nini-swagger</artifactId>
+    <artifactId>nine-swagger</artifactId>
 
     <dependencies>
 

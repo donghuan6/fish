@@ -28,7 +28,7 @@
 
         <dependency>
             <groupId>com.nine</groupId>
-            <artifactId>nini-swagger</artifactId>
+            <artifactId>nine-swagger</artifactId>
             <version>0.0.1</version>
         </dependency>
 

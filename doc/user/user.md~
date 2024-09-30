@@ -41,9 +41,10 @@ create table `sys_permit`
   default charset = utf8mb4
   collate = utf8mb4_0900_ai_ci comment ='权限';
 
-insert into sys_permit(permit_id, permit_name, path, parent_id, menu_type, permit)
+insert into sys_permit(permit_id,permit_name,path,parent_id,menu_type,permit)
+values ()
 values
-    (default， ‘登录'， '/login'， 0， ‘u'， 'login:login'， ‘登录权限'），
+    （default， ‘登录'， '/login'， 0， ‘u'， 'login:login'， ‘登录权限'），
 （default， ‘进入登录页面'， '/login'， 0， ‘U'， ‘login：toLogin'， ‘进入登录页面权限'），
 （default， ‘退出 '， '/ logout'， 0， 'u'， 'logout'， '退出权限'），
 （default， '注册'， '/register'， O， ‘u'， 'reg:register'， ‘ 注册权限 '），

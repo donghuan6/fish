@@ -18,9 +18,6 @@ import java.time.LocalDateTime;
 @Setter
 public abstract class BaseEntity {
 
-    @TableId(value = "id", type = IdType.AUTO)
-    protected Long id;
-
     @TableField(fill = FieldFill.INSERT)
     protected LocalDateTime createTime;
 

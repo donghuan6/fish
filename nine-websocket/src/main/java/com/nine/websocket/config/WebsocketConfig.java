@@ -7,16 +7,13 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 
 /**
  * websocket 启用 stomp
+ *
  * @author fan
  */
 @Slf4j
 @Configuration
 @AllArgsConstructor
 public class WebsocketConfig implements WebSocketMessageBrokerConfigurer {
-
-    private final
-
-
 
 
 }

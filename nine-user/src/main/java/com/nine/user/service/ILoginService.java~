@@ -1,0 +1,2 @@
+package com.nine.user.service.base;public interface ILoginService {
+}

@@ -1,5 +1,8 @@
 package com.nine.domain.user;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.nine.dao.entity.BaseEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
@@ -12,7 +15,12 @@ import java.time.LocalDateTime;
 
 @Data
 @Schema(description = "用户")
-public class SysUser extends BaseEntity {
+@TableName("sys_user")
+public class User extends BaseEntity {
+
+    @Schema(description = "用户ID")
+    @TableId(value = "user_id", type = IdType.AUTO)
+    private Long userId;
 
     @Schema(description = "用户名")
     @Length(max = 30, message = "用户名长度不能超过30")

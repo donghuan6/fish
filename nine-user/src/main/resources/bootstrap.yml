@@ -1,0 +1,25 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: nine-user
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      # 3秒。设置客户端等待来自池的连接的最大毫秒数，必须 > 250
+      connection-timeout: 3000
+      # 该属性控制HikariCP试图在池中维护的最小空闲连接数，包括空闲和正在使用的连接
+      minimum-idle: 2
+      # 该属性控制池允许达到的最大大小，包括空闲和使用中的连接。基本上，此值将确定到数据库后端的实际连接的最大数量。
+      # 当池达到此大小，并且没有空闲连接可用时，对getConnection（）的调用将在超时前阻塞长达connectionTimeout毫秒。
+      maximum-pool-size: 10
+      # 用于测试连接是否可用的查询语句
+      connection-test-query: select 1
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto

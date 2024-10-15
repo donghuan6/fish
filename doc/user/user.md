@@ -26,9 +26,8 @@ create table `sys_user`
 
 insert into sys_user (user_id, user_name, phone, nick_name, password, login_ip, login_date, create_time, create_by,
                       update_time, update_by)
-values (default, 'service', '000', 'service', 'service', '127.0.0.1', now(), now(), 'service', now(), 'service'),
-       (default, 'admin', '111', 'admin', 'admin', '127.0.0.1', now(), now(), 'service', now(), 'service'),
-       (default, 'user', '222', 'user', '123456', '127.0.0.1', now(), now(), 'service', now(), 'service');
+values (default, 'admin', '000', 'admin', 'admin', '127.0.0.1', now(), now(), 'admin', now(), 'admin'),
+       (default, 'user', '111', 'user', '123456', '127.0.0.1', now(), now(), 'admin', now(), 'admin');
 
 -- 权限
 create table `sys_permit`
@@ -74,8 +73,7 @@ create table `sys_role`
     collate = utf8mb4_0900_ai_ci comment = '角色';
 
 insert into sys_role(role_id, role_name, role_key, remark)
-values (default, '超级管理员', 'super_admin', '全部权限'),
-       (default, '管理员', 'admin', '业务权限'),
+values (default, '管理员', 'admin', '业务权限'),
        (default, '普通用户', 'user', '基础权限');
 
 -- 角色与权限
@@ -87,6 +85,27 @@ create table `sys_role_permit`
 default charset = utf8mb4
   collate = utf8mb4_0900_ai_ci comment ='角色与权限';
 
+insert into sys_role_permit(role_id, permit_id)
+values (1, 1),
+       (1, 2),
+       (1, 3),
+       (1, 4),
+       (1, 5),
+       (1, 6),
+       (1, 7),
+       (1, 8),
+       (1, 9),
+       (1, 10),
+       (1, 11),
+       (1, 12),
+       (1, 13),
+       (2, 1),
+       (2, 2),
+       (2, 3),
+       (2, 4),
+       (2, 5),
+       (2, 6);
+
 -- 角色与用户
 create table `sys_role_user`
 (
@@ -95,4 +114,8 @@ create table `sys_role_user`
 )engine = innodb
 default charset = utf8mb4
   collate = utf8mb4_0900_ai_ci comment ='角色与用户';
+
+insert into sys_role_user(role_id, user_id)
+values (1, 1),
+       (2, 2);
 ```

@@ -11,7 +11,7 @@ public interface UserJoinMapper {
 
     List<Role> selectRoleByUserId(@Param("userId") Long userId);
 
-    List<Permit> selectPermitByUserId(@Param("userId") Integer userId);
+    List<Permit> selectPermitByUserId(@Param("userId") Long userId);
 
     List<Permit> selectPermitByRoleId(@Param("roleId") Integer roleId);
 

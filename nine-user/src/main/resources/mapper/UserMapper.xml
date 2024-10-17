@@ -5,7 +5,7 @@
 
     <resultMap id="userMap" type="com.nine.domain.user.User">
         <result property="userId" column="user_id"/>
-        <result property="userName" column="user_name"/>
+        <result property="username" column="username"/>
         <result property="phone" column="phone"/>
         <result property="nickName" column="nick_name"/>
         <result property="password" column="password"/>

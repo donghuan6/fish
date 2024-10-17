@@ -25,7 +25,7 @@ public class User extends BaseEntity {
     @Schema(description = "用户名")
     @Length(max = 30, message = "用户名长度不能超过30")
     @NotBlank(message = "用户名不能为空")
-    private String userName;
+    private String username;
 
     @Schema(description = "手机号")
     @Length(max = 20, message = "手机号长度不能超过20")

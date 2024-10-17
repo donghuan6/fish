@@ -4,7 +4,7 @@
 create table `sys_user`
 (
     `user_id`     bigint       not null primary key auto_increment comment 'id',
-    `user_name`   varchar(30)  not null comment '用户名/登录名',
+    `username`    varchar(30)  not null comment '用户名/登录名',
     `phone`       varchar(20)  not null comment '手机号',
     `nick_name`   varchar(50)  not null comment '昵称',
     `password`    varchar(100) not null comment '密码',
@@ -19,15 +19,15 @@ create table `sys_user`
     `create_by`   varchar(30)  not null comment '创建人',
     `update_time` datetime     not null comment '更新时间',
     `update_by`   varchar(30)  not null comment '更新人',
-    unique key `idx_user_name` (`user_name`)
+    unique key `idx_username` (`username`)
 ) engine = innodb
   default charset = utf8mb4
   collate = utf8mb4_0900_ai_ci comment ='用户';
 
-insert into sys_user (user_id, user_name, phone, nick_name, password, login_ip, login_date, create_time, create_by,
+insert into sys_user (user_id, username, phone, nick_name, password, login_ip, login_date, create_time, create_by,
                       update_time, update_by)
-values (default, 'admin', '000', 'admin', 'admin', '127.0.0.1', now(), now(), 'admin', now(), 'admin'),
-       (default, 'user', '111', 'user', '123456', '127.0.0.1', now(), now(), 'admin', now(), 'admin');
+values (default, 'admin', '000', 'admin', '123', '127.0.0.1', now(), now(), 'admin', now(), 'admin'),
+       (default, 'user', '111', 'user', '123', '127.0.0.1', now(), now(), 'admin', now(), 'admin');
 
 -- 权限
 create table `sys_permit`

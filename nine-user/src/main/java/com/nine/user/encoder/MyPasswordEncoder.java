@@ -10,8 +10,9 @@ public class MyPasswordEncoder implements PasswordEncoder {
 
     /**
      * 密码加密
+     *
      * @param rawPassword 明文密码
-     * @return  密码加密后的密文
+     * @return 密码加密后的密文
      */
     @Override
     public String encode(CharSequence rawPassword) {
@@ -20,7 +21,8 @@ public class MyPasswordEncoder implements PasswordEncoder {
 
     /**
      * 匹配明文密码与密文密码是否相同
-     * @param rawPassword 明文密码，客户端传入
+     *
+     * @param rawPassword     明文密码，客户端传入
      * @param encodedPassword 密文密码，一般存储在数据库中
      * @return
      */

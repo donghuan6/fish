@@ -20,7 +20,7 @@ public class LoginService {
     private final IUserService userService;
 
     public UserVo login(LoginDto loginDto) {
-        User user = userService.getByUserName(loginDto.getUserName());
+        User user = userService.getByUserName(loginDto.getUsername());
         if (Objects.isNull(user) || !user.getPassword().equals(loginDto.getPassword())) {
             throw new ServiceException("用户名或密码错误");
         }

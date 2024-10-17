@@ -1,6 +1,7 @@
 package com.nine.common.domain;
 
 import cn.hutool.http.HttpStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 
 import java.io.Serial;
@@ -45,10 +46,12 @@ public class R<T> implements Serializable {
         this.msg = msg;
     }
 
+    @JsonIgnore
     public boolean isOk() {
         return this.code == SUCCESS_CODE;
     }
 
+    @JsonIgnore
     public boolean isFail() {
         return this.code != SUCCESS_CODE;
     }

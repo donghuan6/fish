@@ -20,7 +20,7 @@ public interface IUserService extends IBaseService<User> {
                     .eq(User::getUserId, queryDao.getUserId());
         } else {
             return Wrappers.lambdaQuery(User.class)
-                    .like(StringUtils.hasText(queryDao.getUserName()), User::getUserName, queryDao.getUserName())
+                    .like(StringUtils.hasText(queryDao.getUsername()), User::getUsername, queryDao.getUsername())
                     .like(StringUtils.hasText(queryDao.getPhone()), User::getPhone, queryDao.getPhone())
                     .like(StringUtils.hasText(queryDao.getNickName()), User::getNickName, queryDao.getNickName())
                     .like(StringUtils.hasText(queryDao.getEmail()), User::getEmail, queryDao.getEmail())
@@ -30,7 +30,7 @@ public interface IUserService extends IBaseService<User> {
         }
     }
 
-    default User getByUserName(String userName) {
-        return this.lambdaQuery().eq(User::getUserName, userName).one();
+    default User getByUserName(String username) {
+        return this.lambdaQuery().eq(User::getUsername, username).one();
     }
 }

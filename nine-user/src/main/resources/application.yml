@@ -1,4 +1,12 @@
 spring:
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    cache: false
+    check-template: true
+    check-template-location: true
+    encoding: utf-8
 
   security:
     user:
@@ -10,5 +18,8 @@ spring:
     username: root
     password: 123456
 
+logging:
+  level:
+    com.nine.user.mapper: trace
 
 

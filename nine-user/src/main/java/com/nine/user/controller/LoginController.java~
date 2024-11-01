@@ -29,12 +29,4 @@ public class LoginController {
         return R.ok(Boolean.TRUE, "hello");
     }
 
-    @Tag(name = "退出登录")
-    @PostMapping("/logout")
-    public R<Boolean> logout() {
-
-
-        return R.ok(Boolean.TRUE, "hello");
-    }
-
 }

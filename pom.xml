@@ -22,6 +22,7 @@
         <module>nine-user</module>
         <module>nine-domain</module>
         <module>nine-swagger</module>
+        <module>nine-dingtalk</module>
 
     </modules>
 

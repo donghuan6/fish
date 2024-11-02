@@ -9,9 +9,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @MapperScan("com.nine.user.mapper")
 @SpringBootApplication
-public class User_App {
+public class UserApp {
     public static void main(String[] args) {
-        SpringApplication.run(User_App.class, args);
+        SpringApplication.run(UserApp.class, args);
         System.out.println("◢▇▇▇▇▇▇▇▇ User ▇▇▇▇▇▇▇▇◤");
     }
 

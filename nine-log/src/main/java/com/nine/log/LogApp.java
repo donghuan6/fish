@@ -1,14 +1,14 @@
-package com.nine.gateway;
+package com.nine.log;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class GatewayMain {
+public class LogApp {
 
     public static void main(String[] args) {
-        SpringApplication.run(GatewayMain.class, args);
-        System.out.println("============ Gateway 启动成功 ============");
+        SpringApplication.run(LogApp.class, args);
+        System.out.println("============ Log 启动成功 ============");
     }
 
 }

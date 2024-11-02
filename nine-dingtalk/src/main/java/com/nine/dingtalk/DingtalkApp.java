@@ -1,14 +1,13 @@
-package com.nine.websocket;
+package com.nine.dingtalk;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class WebsocketMain {
+public class DingtalkApp {
 
     public static void main(String[] args) {
-        SpringApplication.run(WebsocketMain.class, args);
-        System.out.println("============ websocket 启动成功 ============");
+        SpringApplication.run(DingtalkApp.class, args);
     }
 
 }

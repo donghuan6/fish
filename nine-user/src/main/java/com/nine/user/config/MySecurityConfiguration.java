@@ -40,8 +40,18 @@ public class MySecurityConfiguration {
                             request.getRequestDispatcher("/home").forward(request, response);
                         })
         );
+
+        http.exceptionHandling(configurer -> {
+            // 自定义配置无权限错误处理
+            configurer.accessDeniedHandler(new MyAccessDeniedHandler())
+                    // 自定义配置认证失败处理逻辑
+                    .authenticationEntryPoint(new MyAuthenticationEntryPoint())
+            ;
+        });
+
         // 授权配置
         http.authorizeRequests()
+//                .requestMatchers("/**").access("@myPermissionCheckerImpl.check(request,authentication)")
                 // 放行登录页面
                 .requestMatchers("/login").permitAll() // 放行 login 请求，不作认证授权验证
                 // 放行静态资源

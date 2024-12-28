@@ -5,23 +5,14 @@
 
     <parent>
         <groupId>com.nine</groupId>
-        <artifactId>fish</artifactId>
+        <artifactId>nine-api</artifactId>
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>nine-common</artifactId>
-    <version>1.0.0</version>
+    <artifactId>nine-api-log</artifactId>
 
-    <name>nine-common</name>
+    <dependencies>
 
-    <packaging>pom</packaging>
-
-    <modules>
-        <module>nine-core</module>
-        <module>nine-redis</module>
-        <module>nine-dao</module>
-        <module>nine-domain</module>
-        <module>nine-swagger</module>
-    </modules>
+    </dependencies>
 
 </project>

@@ -1,0 +1,17 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: nine-gateway
+  cloud:
+    discovery:
+      enabled: true
+    gateway:
+      enabled: true
+      routes:
+        - id: nine-user
+          uri: lb://nine-user
+          predicates:
+            - Path=/user/**
+          filters:
+            - StripPrefix=1

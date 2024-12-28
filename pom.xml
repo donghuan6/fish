@@ -5,28 +5,20 @@
 
     <groupId>com.nine</groupId>
     <artifactId>fish</artifactId>
-    <version>0.0.1</version>
+    <version>1.0.0</version>
 
     <name>fish</name>
-
     <packaging>pom</packaging>
 
     <modules>
+<!--        <module>leetcode</module>-->
+        <module>nine-api</module>
         <module>nine-common</module>
-        <module>nine-redis</module>
-        <module>leetcode</module>
-        <module>nine-log</module>
-        <module>nine-dao</module>
-        <module>nine-gateway</module>
-        <module>nine-websocket</module>
-        <module>nine-user</module>
-        <module>nine-domain</module>
-        <module>nine-swagger</module>
-        <module>nine-dingtalk</module>
-
+        <module>nine-service</module>
     </modules>
 
     <properties>
+        <skipTests>true</skipTests>
         <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>

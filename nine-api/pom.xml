@@ -9,19 +9,14 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>nine-common</artifactId>
-    <version>1.0.0</version>
-
-    <name>nine-common</name>
-
+    <artifactId>nine-api</artifactId>
     <packaging>pom</packaging>
 
     <modules>
-        <module>nine-core</module>
-        <module>nine-redis</module>
-        <module>nine-dao</module>
-        <module>nine-domain</module>
-        <module>nine-swagger</module>
+        <module>nine-api-dingtalk</module>
+        <module>nine-api-log</module>
+        <module>nine-api-user</module>
     </modules>
+
 
 </project>

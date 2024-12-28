@@ -1,0 +1,8 @@
+server:
+  compression:
+    # 不开启压缩
+    enabled: false
+  servlet:
+    encoding:
+      enabled: true
+      charset: utf-8

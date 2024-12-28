@@ -1,0 +1,11 @@
+dingtalk:
+  corpId: dingd3f163aafd49d5c935c2f4657eb6378f
+  defaultUserId: 13155444451078047
+  name: oa审批
+  agentId: 3315784800
+  appKey: dingsmxarpzgsyukg8ul
+  appSecret: UcFG9KXlab5UlQtpsyW8ivgtgBEPsdGbN9i7wVBTjeqZcfrLiwGQQZXOfw_KKP5M
+  bpmsInstanceChange: bpms_instance_change
+  projectInfoProcessCode:
+  announcementProcessCode:
+

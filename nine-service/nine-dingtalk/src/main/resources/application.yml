@@ -1,2 +1,11 @@
-
+dingtalk:
+  corpId:
+  defaultUserId:
+  name: oa审批
+  agentId:
+  appKey:
+  appSecret:
+  bpmsInstanceChange: bpms_instance_change
+  projectInfoProcessCode:
+  announcementProcessCode:
 

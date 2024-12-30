@@ -16,7 +16,7 @@ public class DingTalkConfig {
     // 应用名
     private String name;
     // 应用id
-    private String agentId;
+    private Long agentId;
     // 应用key
     private String appKey;
     // 应用密钥

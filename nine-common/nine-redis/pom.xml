@@ -8,6 +8,7 @@
         <version>1.0.0</version>
     </parent>
 
+    <version>1.0.0</version>
     <artifactId>nine-redis</artifactId>
 
     <dependencies>

@@ -11,10 +11,11 @@
     <packaging>pom</packaging>
 
     <modules>
-<!--        <module>leetcode</module>-->
+        <!--        <module>leetcode</module>-->
         <module>nine-api</module>
         <module>nine-common</module>
         <module>nine-service</module>
+        <module>nine-param</module>
     </modules>
 
     <properties>

@@ -13,9 +13,9 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>nine-api-dingtalk</module>
-        <module>nine-api-log</module>
-        <module>nine-api-user</module>
+        <module>nine-dingtalk-api</module>
+        <module>nine-log-api</module>
+        <module>nine-user-api</module>
     </modules>
 
 

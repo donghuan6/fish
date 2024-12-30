@@ -9,9 +9,15 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>nine-api-log</artifactId>
+    <artifactId>nine-log-api</artifactId>
 
     <dependencies>
+
+        <dependency>
+            <groupId>com.nine</groupId>
+            <artifactId>nine-log-param</artifactId>
+            <version>1.0.0</version>
+        </dependency>
 
     </dependencies>
 

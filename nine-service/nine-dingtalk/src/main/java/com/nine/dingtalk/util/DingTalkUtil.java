@@ -3,6 +3,7 @@ package com.nine.dingtalk.util;
 import cn.hutool.extra.spring.SpringUtil;
 import com.aliyun.dingtalkoauth2_1_0.models.GetTokenRequest;
 import com.aliyun.dingtalkoauth2_1_0.models.GetTokenResponse;
+import com.aliyun.dingtalkoauth2_1_0.models.GetTokenResponseBody;
 import com.nine.dingtalk.config.DingTalkConfig;
 import lombok.Getter;
 import org.springframework.http.HttpHeaders;
@@ -57,7 +58,7 @@ public class DingTalkUtil {
      * "grant_type" : "client_credentials"
      * }
      */
-    public static void getToken() {
+    public static TokenVo getToken() {
         GetTokenRequest req = new GetTokenRequest();
         req.setClientId(DINGTALK_CONFIG.getAgentId());
         req.setClientSecret(DINGTALK_CONFIG.getAppSecret());
@@ -69,6 +70,8 @@ public class DingTalkUtil {
             throw new RuntimeException(e);
         }
         if (Objects.equals(HttpStatus.OK.value(), rsp.getStatusCode())) {
+            GetTokenResponseBody body = rsp.getBody();
+
 
         }
     }

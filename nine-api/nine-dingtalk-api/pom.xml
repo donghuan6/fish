@@ -9,9 +9,15 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>nine-api-user</artifactId>
+    <artifactId>nine-dingtalk-api</artifactId>
 
     <dependencies>
+
+        <dependency>
+            <groupId>com.nine</groupId>
+            <artifactId>nine-dingtalk-param</artifactId>
+            <version>1.0.0</version>
+        </dependency>
 
     </dependencies>
 

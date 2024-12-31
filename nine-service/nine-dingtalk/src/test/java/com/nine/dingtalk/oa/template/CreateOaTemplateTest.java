@@ -13,25 +13,6 @@ import com.aliyun.teautil.models.RuntimeOptions;
  */
 public class CreateOaTemplateTest {
 
-    /**
-     * 易建采-采购审批应用
-     * dingtalk:
-     * oa:
-     * corp-id: dingd3f163aafd49d5c935c2f4657eb6378f
-     * agent-id: 3315784800
-     * app-key: dingsmxarpzgsyukg8ul
-     * app-secret: UcFG9KXlab5UlQtpsyW8ivgtgBEPsdGbN9i7wVBTjeqZcfrLiwGQQZXOfw_KKP5M
-     * user-id: 13155444451078047
-     * project-info-process-code: PROC-389F59F0-EDEC-483F-8955-B5BC073DA02A
-     * announcement-process-code: PROC-19F7A4CD-FF36-4589-8230-5D9505F821EC
-     */
-    static final String corpId = "dingd3f163aafd49d5c935c2f4657eb6378f";
-    static final Long agentId = 3315784800L;
-    static final String appKey = "dingsmxarpzgsyukg8ul";
-    static final String appSecret = "UcFG9KXlab5UlQtpsyW8ivgtgBEPsdGbN9i7wVBTjeqZcfrLiwGQQZXOfw_KKP5M";
-    static final String userId = "13155444451078047";
-    static final String projectInfoProcessCode = "PROC-389F59F0-EDEC-483F-8955-B5BC073DA02A";
-    static final String announcementProcessCode = "PROC-19F7A4CD-FF36-4589-8230-5D9505F821EC";
 
     /**
      * 使用 Token 初始化账号Client

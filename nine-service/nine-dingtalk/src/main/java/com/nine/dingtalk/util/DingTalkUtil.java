@@ -6,6 +6,9 @@ import com.aliyun.dingtalkoauth2_1_0.models.GetTokenRequest;
 import com.aliyun.dingtalkoauth2_1_0.models.GetTokenResponse;
 import com.aliyun.dingtalkoauth2_1_0.models.GetTokenResponseBody;
 import com.aliyun.dingtalkstorage_1_0.models.*;
+import com.aliyun.dingtalkworkflow_1_0.models.QuerySchemaByProcessCodeHeaders;
+import com.aliyun.dingtalkworkflow_1_0.models.QuerySchemaByProcessCodeRequest;
+import com.aliyun.dingtalkworkflow_1_0.models.QuerySchemaByProcessCodeResponse;
 import com.aliyun.teautil.models.RuntimeOptions;
 import com.dingtalk.api.DefaultDingTalkClient;
 import com.dingtalk.api.DingTalkClient;
@@ -46,6 +49,8 @@ public class DingTalkUtil {
     public static com.aliyun.dingtalkstorage_1_0.Client STORAGE_CLIENT_1;
     public static com.aliyun.dingtalkstorage_2_0.Client STORAGE_CLIENT_2;
 
+    public static com.aliyun.dingtalkworkflow_1_0.Client WORKFLOW_CLIENT_1;
+
     static {
         STRING_REDIS_TEMPLATE = Optional.ofNullable(SpringUtil.getBeanFactory())
                 .map(beanFactory -> beanFactory.getBean(StringRedisTemplate.class))
@@ -58,6 +63,8 @@ public class DingTalkUtil {
 
         STORAGE_CLIENT_1 = createStorageClient_1();
         STORAGE_CLIENT_2 = createStorageClient_2();
+
+        WORKFLOW_CLIENT_1 = createWorkflowClient_1();
     }
 
     private static com.aliyun.teaopenapi.models.Config getConfig() {
@@ -92,6 +99,17 @@ public class DingTalkUtil {
         config.regionId = "central";
         try {
             return new com.aliyun.dingtalkstorage_2_0.Client(config);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static com.aliyun.dingtalkworkflow_1_0.Client createWorkflowClient_1() {
+        com.aliyun.teaopenapi.models.Config config = new com.aliyun.teaopenapi.models.Config();
+        config.protocol = "https";
+        config.regionId = "central";
+        try {
+            return new com.aliyun.dingtalkworkflow_1_0.Client(config);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -379,6 +397,51 @@ public class DingTalkUtil {
         }
         log.error("[钉钉-获取审批模板code-异常] processName:{}, rsp:{}", processName, JSONUtil.toJsonStr(rsp));
         throw new ServiceException("钉钉-获取审批模板code-异常: " + rsp.getErrmsg());
+    }
+
+    /**
+     * 获取表单 schema
+     */
+    public static String querySchema(String processCode) {
+        QuerySchemaByProcessCodeHeaders querySchemaByProcessCodeHeaders = new QuerySchemaByProcessCodeHeaders();
+        querySchemaByProcessCodeHeaders.xAcsDingtalkAccessToken = getToken();
+        QuerySchemaByProcessCodeRequest querySchemaByProcessCodeRequest =
+                new QuerySchemaByProcessCodeRequest()
+                        .setProcessCode(processCode);
+        QuerySchemaByProcessCodeResponse response;
+        try {
+            response = WORKFLOW_CLIENT_1.querySchemaByProcessCodeWithOptions(
+                    querySchemaByProcessCodeRequest,
+                    querySchemaByProcessCodeHeaders,
+                    new RuntimeOptions());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        if (Objects.equals(200, response.getStatusCode())) {
+            return JSONUtil.toJsonStr(response.getBody().getResult());
+        }
+        log.error("[获取表单-schema-失败] processCode={}, rsp={}", processCode, JSONUtil.toJsonStr(response));
+        throw new ServiceException("获取表单-schema-失败");
+    }
+
+    /**
+     * 获取审批实例
+     */
+    public static String getProcessInstance(String processInstanceId) {
+        DefaultDingTalkClient client = new DefaultDingTalkClient("https://oapi.dingtalk.com/topapi/processinstance/get");
+        OapiProcessinstanceGetRequest req = new OapiProcessinstanceGetRequest();
+        req.setProcessInstanceId(processInstanceId);
+        OapiProcessinstanceGetResponse rsp;
+        try {
+            rsp = client.execute(req, getToken());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        if (rsp.isSuccess()) {
+            return JSONUtil.toJsonStr(rsp.getProcessInstance());
+        }
+        log.error("[获取审批实例-异常] processInstanceId:{}, rsp:{}", processInstanceId, JSONUtil.toJsonStr(rsp));
+        throw new ServiceException("获取审批实例-异常: " + rsp.getErrmsg());
     }
 
 }

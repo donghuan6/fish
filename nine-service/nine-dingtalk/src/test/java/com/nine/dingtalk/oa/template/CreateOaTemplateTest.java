@@ -377,7 +377,7 @@ public class CreateOaTemplateTest {
     public static void main(String[] args_) throws Exception {
         // 测试-北京胸科-行政审批
         // PROC-90A5D54B-E31E-4A9E-8DD5-F3BF0FB35695
-//        System.out.println(createCustomTemplate("0f0bd991d7883fc2b3a3e759e4e4d771"));
+//        System.out.println(createCustomTemplate("a21bc0f0bd991d7883fc2b3a3e759e4e4d771"));
     }
 }
 

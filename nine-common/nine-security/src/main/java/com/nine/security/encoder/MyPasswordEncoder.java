@@ -1,10 +1,9 @@
-package com.nine.user.encoder;
+package com.nine.security.encoder;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
- * spring security password encoder
- * 自定义密码编码器
+ * 如果需要，可以使用自定义密码加密编码
  */
 public class MyPasswordEncoder implements PasswordEncoder {
 
@@ -24,7 +23,7 @@ public class MyPasswordEncoder implements PasswordEncoder {
      *
      * @param rawPassword     明文密码，客户端传入
      * @param encodedPassword 密文密码，一般存储在数据库中
-     * @return
+     * @return true：相同，false：不相同
      */
     @Override
     public boolean matches(CharSequence rawPassword, String encodedPassword) {

@@ -24,9 +24,7 @@ import java.io.IOException;
 public class PostJsonRequestFilter extends OncePerRequestFilter {
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request,
-                                    HttpServletResponse response,
-                                    FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         if (HttpMethod.POST.matches(request.getMethod())
                 // 这里增加判断由内部 feign 调用时，req.getContentType() 可能会为 null
                 && StringUtils.hasText(request.getContentType())

@@ -55,12 +55,6 @@
 
         <dependency>
             <groupId>com.nine</groupId>
-            <artifactId>nine-dingtalk-param</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.nine</groupId>
             <artifactId>nine-redis</artifactId>
             <version>1.0.0</version>
         </dependency>

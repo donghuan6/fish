@@ -1,14 +1,17 @@
 package com.nine.common.handler;
 
 import cn.hutool.core.map.MapUtil;
+import cn.hutool.json.JSONUtil;
 import com.nine.common.domain.R;
 import com.nine.common.ex.ServiceException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.util.ContentCachingRequestWrapper;
 import org.springframework.web.util.WebUtils;
 
@@ -65,8 +68,13 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(ServiceException.class)
-    public R<?> handlerServiceException(ServiceException e) {
+    public Object handlerServiceException(ServiceException e, HandlerMethod method) {
         log.error("业务异常：{}", getRequestDetails(), e);
+        // 由于非 json 响应也需要记录日志，使用 method 进行区分
+        if (ResponseEntity.class.isAssignableFrom(method.getMethod().getReturnType())) {
+            String jsonStr = JSONUtil.toJsonStr(R.fail(e.getMessage()));
+            return ResponseEntity.ok().body(jsonStr);
+        }
         return R.fail(e.getMessage());
     }
 

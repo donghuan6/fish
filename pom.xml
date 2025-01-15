@@ -15,7 +15,7 @@
         <module>nine-api</module>
         <module>nine-common</module>
         <module>nine-service</module>
-        <module>nine-param</module>
+        <module>nine-domain</module>
     </modules>
 
     <properties>

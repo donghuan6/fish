@@ -2,25 +2,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <parent>
         <groupId>com.nine</groupId>
-        <artifactId>fish</artifactId>
+        <artifactId>nine-domain</artifactId>
         <version>1.0.0</version>
     </parent>
-
-    <artifactId>nine-common</artifactId>
+    <artifactId>nine-domain-log</artifactId>
     <version>1.0.0</version>
+    <name>nine-domain-log</name>
 
-    <name>nine-common</name>
+    <dependencies>
 
-    <packaging>pom</packaging>
+    </dependencies>
 
-    <modules>
-        <module>nine-core</module>
-        <module>nine-redis</module>
-        <module>nine-dao</module>
-        <module>nine-swagger</module>
-    </modules>
 
 </project>

@@ -1,8 +1,8 @@
 package com.nine.user.detailservice;
 
-import com.nine.domain.user.Permit;
-import com.nine.domain.user.Role;
-import com.nine.domain.user.User;
+import com.nine.user.dao.Permit;
+import com.nine.user.dao.Role;
+import com.nine.user.dao.User;
 import com.nine.user.mapper.customize.UserJoinMapper;
 import com.nine.user.service.base.IUserService;
 import lombok.AllArgsConstructor;

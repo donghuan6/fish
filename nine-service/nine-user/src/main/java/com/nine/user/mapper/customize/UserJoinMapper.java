@@ -1,7 +1,7 @@
 package com.nine.user.mapper.customize;
 
-import com.nine.domain.user.Permit;
-import com.nine.domain.user.Role;
+import com.nine.user.dao.Permit;
+import com.nine.user.dao.Role;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

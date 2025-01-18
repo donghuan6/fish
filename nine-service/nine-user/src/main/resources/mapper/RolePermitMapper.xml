@@ -3,7 +3,7 @@
 
 <mapper namespace="com.nine.user.mapper.RolePermitMapper">
 
-    <resultMap id="rolePermitMap" type="com.nine.domain.user.RolePermit">
+    <resultMap id="rolePermitMap" type="com.nine.user.dao.RolePermit">
         <result property="roleId" column="role_id"/>
         <result property="permitId" column="permit_id"/>
     </resultMap>

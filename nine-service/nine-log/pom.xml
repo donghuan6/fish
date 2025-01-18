@@ -17,13 +17,7 @@
 
         <dependency>
             <groupId>com.nine</groupId>
-            <artifactId>nine-redis</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.nine</groupId>
-            <artifactId>nine-dao</artifactId>
+            <artifactId>nine-log-api</artifactId>
             <version>1.0.0</version>
         </dependency>
 
@@ -35,6 +29,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
         </dependency>
 
     </dependencies>

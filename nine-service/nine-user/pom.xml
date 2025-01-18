@@ -23,7 +23,13 @@
 
         <dependency>
             <groupId>com.nine</groupId>
-            <artifactId>nine-domain</artifactId>
+            <artifactId>nine-user-api</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.nine</groupId>
+            <artifactId>nine-security</artifactId>
             <version>1.0.0</version>
         </dependency>
 
@@ -37,8 +43,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
-
 
         <dependency>
             <groupId>com.mysql</groupId>
@@ -54,6 +58,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
+
 
     </dependencies>
 </project>

@@ -3,7 +3,7 @@
 
 <mapper namespace="com.nine.user.mapper.PermitMapper">
 
-    <resultMap id="permitMap" type="com.nine.domain.user.Permit">
+    <resultMap id="permitMap" type="com.nine.user.dao.Permit">
     </resultMap>
 
 </mapper>

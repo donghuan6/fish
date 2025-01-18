@@ -3,8 +3,7 @@ package com.nine.user.service.base;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.nine.dao.service.IBaseService;
-import com.nine.domain.user.RolePermit;
-import com.nine.domain.user.RoleUser;
+import com.nine.user.dao.RoleUser;
 
 import java.util.Objects;
 

@@ -1,9 +1,9 @@
 package com.nine.user.controller;
 
 import com.nine.common.domain.R;
-import com.nine.dao.dto.LoginDto;
-import com.nine.dao.vo.UserVo;
+import com.nine.user.dto.LoginDto;
 import com.nine.user.service.LoginService;
+import com.nine.user.vo.UserVo;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;

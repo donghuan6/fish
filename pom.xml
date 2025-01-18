@@ -15,7 +15,6 @@
         <module>nine-api</module>
         <module>nine-common</module>
         <module>nine-service</module>
-        <module>nine-domain</module>
     </modules>
 
     <properties>
@@ -30,6 +29,8 @@
         <itext-core.version>8.0.4</itext-core.version>
         <mybatis-plus.version>3.5.7</mybatis-plus.version>
         <springdoc-openapi.version>2.5.0</springdoc-openapi.version>
+        <mapstruct.version>1.6.3</mapstruct.version>
+        <poi.version>5.4.0</poi.version>
     </properties>
 
     <dependencyManagement>
@@ -116,6 +117,32 @@
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool-all.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-processor</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+
+            <!--处理旧版的 .xls 文件-->
+            <!--            <dependency>-->
+            <!--                <groupId>org.apache.poi</groupId>-->
+            <!--                <artifactId>poi</artifactId>-->
+            <!--                <version>5.4.0</version>-->
+            <!--            </dependency>-->
+
+            <!--处理新版的 .xlsx 文件-->
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>${poi.version}</version>
             </dependency>
 
         </dependencies>

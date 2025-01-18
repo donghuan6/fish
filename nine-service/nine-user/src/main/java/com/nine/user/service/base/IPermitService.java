@@ -3,7 +3,7 @@ package com.nine.user.service.base;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.nine.dao.service.IBaseService;
-import com.nine.domain.user.Permit;
+import com.nine.user.dao.Permit;
 import org.springframework.util.StringUtils;
 
 import java.util.Objects;

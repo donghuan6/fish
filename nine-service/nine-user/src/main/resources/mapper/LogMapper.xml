@@ -3,7 +3,7 @@
 
 <mapper namespace="com.nine.user.mapper.LogMapper">
 
-    <resultMap id="logMap" type="com.nine.domain.log.Log">
+    <resultMap id="logMap" type="com.nine.log.dao.Log">
         <result property="logId" column="log_id"/>
         <result property="serviceName" column="service_name"/>
         <result property="method" column="method"/>

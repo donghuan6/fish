@@ -2,6 +2,7 @@ package com.nine.security.feign;
 
 
 import cn.hutool.extra.servlet.JakartaServletUtil;
+import com.nine.common.constans.Security;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,7 +26,7 @@ public class FeignRequestInterceptor implements RequestInterceptor {
 
 
         // 微服务内部调用标记
-        requestTemplate.header("a", "b");
+        requestTemplate.header(Security.FROM_SOURCE, Security.INNER);
 
     }
 }

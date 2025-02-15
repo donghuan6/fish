@@ -35,5 +35,11 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.nine</groupId>
+            <artifactId>nine-common-redis</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
     </dependencies>
 </project>

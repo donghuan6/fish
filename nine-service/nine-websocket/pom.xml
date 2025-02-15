@@ -22,7 +22,7 @@
 
         <dependency>
             <groupId>com.nine</groupId>
-            <artifactId>nine-redis</artifactId>
+            <artifactId>nine-common-redis</artifactId>
             <version>1.0.0</version>
         </dependency>
 

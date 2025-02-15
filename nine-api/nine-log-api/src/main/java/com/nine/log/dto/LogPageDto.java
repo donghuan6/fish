@@ -20,6 +20,10 @@ public class LogPageDto extends PageParam implements Serializable {
     @Schema(description = "服务名")
     private String serviceName;
 
+    @Length(max = 100, message = "标题不能超过100个字符")
+    @Schema(description = "标题")
+    private String title;
+
     @Length(max = 100, message = "方法名不能超过100个字符")
     @Schema(description = "方法名")
     private String method;
@@ -32,8 +36,8 @@ public class LogPageDto extends PageParam implements Serializable {
     @Schema(description = "请求ip")
     private String ip;
 
-    @Range(min = 0, max = 1, message = "状态，0-正常，1-异常")
-    @Schema(description = "状态，0-正常，1-异常")
+    @Range(min = 0, max = 1, message = "状态，0-成功，1-失败")
+    @Schema(description = "状态，0-成功，1-失败")
     private Integer status;
 
 

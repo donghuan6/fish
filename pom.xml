@@ -31,10 +31,19 @@
         <springdoc-openapi.version>2.5.0</springdoc-openapi.version>
         <mapstruct.version>1.6.3</mapstruct.version>
         <poi.version>5.4.0</poi.version>
+        <alibaba.transmittable.version>2.14.5</alibaba.transmittable.version>
+        <jjwt.version>0.12.6</jjwt.version>
+
     </properties>
 
     <dependencyManagement>
         <dependencies>
+
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
 
             <!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui -->
             <dependency>
@@ -143,6 +152,12 @@
                 <groupId>org.apache.poi</groupId>
                 <artifactId>poi-ooxml</artifactId>
                 <version>${poi.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>transmittable-thread-local</artifactId>
+                <version>${alibaba.transmittable.version}</version>
             </dependency>
 
         </dependencies>

@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.nine.dao.service.IBaseService;
 import com.nine.log.dao.Log;
-import com.nine.log.dto.LogAddDto;
 import com.nine.log.mapper.LogMapper;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,7 +27,8 @@ public class LogService extends ServiceImpl<LogMapper, Log> implements IBaseServ
             return qw.eq(Log::getLogId, queryDao.getLogId());
         }
         return qw.eq(StrUtil.isNotBlank(queryDao.getServiceName()), Log::getServiceName, queryDao.getServiceName())
-                .like(StrUtil.isNotBlank(queryDao.getMethod()), Log::getMethod, queryDao.getMethod())
+                .like(StrUtil.isNotBlank(queryDao.getTitle()), Log::getTitle, queryDao.getTitle())
+                .like(StrUtil.isNotBlank(queryDao.getClassMethod()), Log::getClassMethod, queryDao.getClassMethod())
                 .like(StrUtil.isNotBlank(queryDao.getUrl()), Log::getUrl, queryDao.getUrl())
                 .like(StrUtil.isNotBlank(queryDao.getIp()), Log::getIp, queryDao.getIp())
                 .eq(Objects.nonNull(queryDao.getStatus()), Log::getStatus, queryDao.getStatus())
@@ -37,9 +37,8 @@ public class LogService extends ServiceImpl<LogMapper, Log> implements IBaseServ
                 .orderByDesc(Log::getLogId);
     }
 
-    public void add(LogAddDto dto) {
-        Log log = new Log().convert(dto);
-        save(log);
+    public void add(Log dto) {
+        save(dto);
     }
 
 }

@@ -22,7 +22,7 @@
 
         <dependency>
             <groupId>com.nine</groupId>
-            <artifactId>nine-dao</artifactId>
+            <artifactId>nine-common-dao</artifactId>
             <version>1.0.0</version>
         </dependency>
 

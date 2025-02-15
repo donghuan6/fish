@@ -11,7 +11,7 @@ create table `sys_user`
     `email`       varchar(50)           default '' comment '邮箱',
     `sex`         tinyint               default 0 comment '性别:0-保密,1-男,2-女',
     `avatar`      varchar(100)          default '' comment '头像',
-    `login_ip`    varchar(50)  not null comment '最后登录ip',
+    `login_ip`    varchar(50)           default null comment '最后登录ip',
     `login_date`  datetime     not null comment '最后登录时间',
     `status`      tinyint      not null default 0 comment '用户状态:0-正常,1-禁用',
     `deleted`     tinyint      not null default 0 comment '0-存在,1-删除',

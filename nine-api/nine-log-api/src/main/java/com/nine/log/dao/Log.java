@@ -4,7 +4,6 @@ import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.annotation.*;
 import com.nine.common.annotation.Excel;
 import com.nine.dao.annotation.Gzip;
-import com.nine.log.dto.LogAddDto;
 import com.nine.log.dto.LogPageDto;
 import com.nine.log.vo.LogVo;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -29,10 +28,20 @@ public class Log {
     @Schema(description = "服务名")
     private String serviceName;
 
+    @Excel(name = "标题", type = Excel.ColumnType.STRING)
+    @Length(max = 100, message = "标题不能超过100个字符")
+    @Schema(description = "标题")
+    private String title;
+
+    @Excel(name = "请求方法", type = Excel.ColumnType.STRING)
+    @Length(max = 10, message = "请求方法不能超过10个字符")
+    @Schema(description = "请求方法")
+    private String method;
+
     @Excel(name = "方法名", type = Excel.ColumnType.STRING)
     @Length(max = 100, message = "方法名不能超过100个字符")
     @Schema(description = "方法名")
-    private String method;
+    private String classMethod;
 
     @Excel(name = "请求url", type = Excel.ColumnType.STRING)
     @Length(max = 100, message = "请求url不能超过100个字符")
@@ -50,6 +59,11 @@ public class Log {
     @Schema(description = "返回结果")
     private String result;
 
+    @Excel(name = "操作用户名", type = Excel.ColumnType.STRING)
+    @Length(max = 100, message = "操作用户名不能超过100个字符")
+    @Schema(description = "操作用户名")
+    private String username;
+
     @Excel(name = "请求ip", type = Excel.ColumnType.STRING)
     @Length(max = 20, message = "请求ip不能超过20个字符")
     @Schema(description = "请求ip")
@@ -57,11 +71,15 @@ public class Log {
 
     @Excel(name = "状态", type = Excel.ColumnType.NUMBER)
     @Range(min = 0, max = 1, message = "状态0-1")
-    @Schema(description = "状态，0-正常，1-异常")
+    @Schema(description = "状态，0-成功，1-失败")
     private Integer status;
 
+    @Excel(name = "耗时", type = Excel.ColumnType.NUMBER)
+    @Schema(description = "耗时")
+    private Long costTime;
+
     @Excel(name = "错误信息", type = Excel.ColumnType.STRING)
-    @Length(max = 1000, message = "错误信息不能超过1000个字符")
+    @Length(max = 2000, message = "错误信息不能超过2000个字符")
     @Schema(description = "错误信息")
     private String errorMsg;
 
@@ -75,12 +93,6 @@ public class Log {
     @TableField(fill = FieldFill.INSERT)
     private String createBy;
 
-
-    public Log convert(LogAddDto dto) {
-        Log log = new Log();
-        BeanUtil.copyProperties(dto, log, false);
-        return log;
-    }
 
     public Log convert(LogPageDto dto) {
         Log log = new Log();

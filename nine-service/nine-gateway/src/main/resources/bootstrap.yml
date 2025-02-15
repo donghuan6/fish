@@ -15,3 +15,6 @@ spring:
             - Path=/user/**
           filters:
             - StripPrefix=1
+
+gateway:
+  whitelist: /**/public/**,/user/login,/user/register,/user/logout,/user/code

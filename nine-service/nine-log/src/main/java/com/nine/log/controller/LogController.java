@@ -5,7 +5,6 @@ import com.nine.common.domain.PageR;
 import com.nine.common.domain.R;
 import com.nine.common.utils.excel.ExcelUtil;
 import com.nine.log.dao.Log;
-import com.nine.log.dto.LogAddDto;
 import com.nine.log.dto.LogPageDto;
 import com.nine.log.service.LogService;
 import com.nine.log.vo.LogVo;
@@ -33,7 +32,6 @@ public class LogController {
 
     private final LogService logService;
 
-
     @Operation(summary = "分页查询日志")
     @PostMapping("/page")
     public PageR<LogVo> page(@RequestBody @Valid LogPageDto dto) {
@@ -44,7 +42,7 @@ public class LogController {
 
     @Operation(summary = "保存日志")
     @PostMapping
-    public R<Boolean> add(@RequestBody @Valid LogAddDto log) {
+    public R<Boolean> add(@RequestBody @Valid Log log) {
         logService.add(log);
         return R.ok();
     }

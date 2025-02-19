@@ -2,16 +2,20 @@ package com.nine.gateway.filter;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
+import com.nine.common.constans.Security;
+import com.nine.common.constans.UserToken;
 import com.nine.common.domain.R;
+import com.nine.common.domain.user.UserVo;
+import com.nine.common.utils.JwtUtil;
+import com.nine.common.utils.servlet.ServletUtil;
 import com.nine.gateway.config.WhitelistProperties;
-import com.nine.redis.user.TokenService;
-import com.nine.redis.user.UserVo;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
 import org.springframework.core.io.buffer.DataBuffer;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -26,7 +30,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
 /**
- * 网关鉴权
+ * 网关鉴权，所有从网关进入的请求都需经过此过滤器
  */
 @Slf4j
 @Component
@@ -34,6 +38,7 @@ import java.util.Objects;
 public class AuthFilter implements GlobalFilter, Ordered {
 
     private final WhitelistProperties whitelistProperties;
+    private final RedisTemplate redisTemplate;
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
@@ -46,22 +51,33 @@ public class AuthFilter implements GlobalFilter, Ordered {
                 return chain.filter(exchange);
             }
         }
-        ServerHttpResponse response = exchange.getResponse();
         // 认证逻辑
-        String authCode = request.getHeaders().getFirst(HttpHeaders.AUTHORIZATION);
-        if (StrUtil.isBlank(authCode)) {
-            return unAuth(exchange, "认证令牌不能为空");
+        String autoCode = request.getHeaders().getFirst(HttpHeaders.AUTHORIZATION);
+        String token = ServletUtil.getToken(autoCode);
+        if (StrUtil.isBlank(token)) {
+            return unAuth(exchange, "Token 格式错误");
         }
-        UserVo userVo = tokenService.getCacheUserVo(authCode);
-        if (Objects.isNull(userVo)) {
-            return unAuth(exchange, "认证令牌无效");
+        if (!JwtUtil.verifyToken(token)) {
+            return unAuth(exchange, "Token 校验失败");
         }
-
-
-
-
-
-        return null;
+        String userKey = JwtUtil.getUserKey(token);
+        if (StrUtil.isBlank(userKey)) {
+            return unAuth(exchange, "Token 缺少用户标识");
+        }
+        UserVo user = (UserVo) redisTemplate.opsForValue().get(userKey);
+        if (Objects.isNull(user)) {
+            return unAuth(exchange, "用户会话已失效");
+        }
+        // 设置用户信息至请求头
+        ServerHttpRequest mutateRequest = request.mutate()
+                .header(UserToken.USER_ID, user.getUserId().toString())
+                .header(UserToken.USERNAME, user.getUsername())
+                .header(UserToken.NICK_NAME, user.getNickName())
+                .header(UserToken.USER_KEY, user.getUserKey())
+                // 去掉微服务内部调用标记
+                .headers(httpHeaders -> httpHeaders.remove(Security.FROM_SOURCE))
+                .build();
+        return chain.filter(exchange.mutate().request(mutateRequest).build());
     }
 
     private Mono<Void> unAuth(ServerWebExchange exchange, String msg) {

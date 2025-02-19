@@ -13,7 +13,7 @@ CREATE TABLE `config_info`
     `md5`                varchar(32)           DEFAULT NULL COMMENT 'md5',
     `gmt_create`         datetime     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `gmt_modified`       datetime     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '修改时间',
-    `src_user`           text COMMENT 'source user',
+    `src_user`           text COMMENT 'source sysUser',
     `src_ip`             varchar(50)           DEFAULT NULL COMMENT 'source ip',
     `app_name`           varchar(128)          DEFAULT NULL COMMENT 'app_name',
     `tenant_id`          varchar(128)          DEFAULT '' COMMENT '租户字段',
@@ -63,7 +63,7 @@ CREATE TABLE `config_info_beta`
     `md5`                varchar(32)           DEFAULT NULL COMMENT 'md5',
     `gmt_create`         datetime     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `gmt_modified`       datetime     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '修改时间',
-    `src_user`           text COMMENT 'source user',
+    `src_user`           text COMMENT 'source sysUser',
     `src_ip`             varchar(50)           DEFAULT NULL COMMENT 'source ip',
     `tenant_id`          varchar(128)          DEFAULT '' COMMENT '租户字段',
     `encrypted_data_key` text         NOT NULL COMMENT '密钥',
@@ -88,7 +88,7 @@ CREATE TABLE `config_info_tag`
     `md5`          varchar(32)           DEFAULT NULL COMMENT 'md5',
     `gmt_create`   datetime     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `gmt_modified` datetime     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '修改时间',
-    `src_user`     text COMMENT 'source user',
+    `src_user`     text COMMENT 'source sysUser',
     `src_ip`       varchar(50)           DEFAULT NULL COMMENT 'source ip',
     PRIMARY KEY (`id`),
     UNIQUE KEY `uk_configinfotag_datagrouptenanttag` (`data_id`, `group_id`, `tenant_id`, `tag_id`)
@@ -150,7 +150,7 @@ CREATE TABLE `his_config_info`
     `md5`                varchar(32)                  DEFAULT NULL COMMENT 'md5',
     `gmt_create`         datetime            NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `gmt_modified`       datetime            NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '修改时间',
-    `src_user`           text COMMENT 'source user',
+    `src_user`           text COMMENT 'source sysUser',
     `src_ip`             varchar(50)                  DEFAULT NULL COMMENT 'source ip',
     `op_type`            char(10)                     DEFAULT NULL COMMENT 'operation type',
     `tenant_id`          varchar(128)                 DEFAULT '' COMMENT '租户字段',
@@ -210,23 +210,23 @@ CREATE TABLE `users`
     `enabled`  boolean      NOT NULL COMMENT 'enabled'
 );
 
-CREATE TABLE `roles`
+CREATE TABLE `sysRoles`
 (
     `username` varchar(50) NOT NULL COMMENT 'username',
-    `role`     varchar(50) NOT NULL COMMENT 'role',
-    UNIQUE INDEX `idx_user_role` (`username` ASC, `role` ASC) USING BTREE
+    `sysRole`     varchar(50) NOT NULL COMMENT 'sysRole',
+    UNIQUE INDEX `idx_user_role` (`username` ASC, `sysRole` ASC) USING BTREE
 );
 
 CREATE TABLE `permissions`
 (
-    `role`     varchar(50)  NOT NULL COMMENT 'role',
+    `sysRole`     varchar(50)  NOT NULL COMMENT 'sysRole',
     `resource` varchar(128) NOT NULL COMMENT 'resource',
     `action`   varchar(8)   NOT NULL COMMENT 'action',
-    UNIQUE INDEX `uk_role_permission` (`role`, `resource`, `action`) USING BTREE
+    UNIQUE INDEX `uk_role_permission` (`sysRole`, `resource`, `action`) USING BTREE
 );
 
 INSERT INTO users (username, password, enabled)
 VALUES ('nacos', '$2a$10$EuWPZHzz32dJN7jexM34MOeYirDdFAZm2kuWj7VEOJhhZkDrxfvUu', TRUE);
 
-INSERT INTO roles (username, role)
+INSERT INTO sysRoles (username, sysRole)
 VALUES ('nacos', 'ROLE_ADMIN');

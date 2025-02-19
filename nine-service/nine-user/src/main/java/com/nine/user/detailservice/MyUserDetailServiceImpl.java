@@ -1,10 +1,10 @@
 package com.nine.user.detailservice;
 
-import com.nine.user.dao.Permit;
-import com.nine.user.dao.Role;
-import com.nine.user.dao.User;
-import com.nine.user.mapper.customize.UserJoinMapper;
-import com.nine.user.service.base.IUserService;
+import com.nine.user.dao.SysPermit;
+import com.nine.user.dao.SysRole;
+import com.nine.user.dao.SysUser;
+import com.nine.user.mapper.customize.SysUserJoinMapper;
+import com.nine.user.service.base.ISysUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,31 +23,31 @@ import java.util.Objects;
 @AllArgsConstructor
 public class MyUserDetailServiceImpl implements UserDetailsService {
 
-    private final IUserService userService;
-    private final UserJoinMapper userJoinMapper;
+    private final ISysUserService userService;
+    private final SysUserJoinMapper sysUserJoinMapper;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userService.getByUserName(username);
-        if (Objects.isNull(user)) {
+        SysUser sysUser = userService.getByUserName(username);
+        if (Objects.isNull(sysUser)) {
             throw new UsernameNotFoundException("用户名或密码错误");
         }
         // 获取用户角色
-        List<Role> roles = userJoinMapper.selectRoleByUserId(user.getUserId());
+        List<SysRole> sysRoles = sysUserJoinMapper.selectRoleByUserId(sysUser.getUserId());
         // 获取用户权限
-        List<Permit> permits = userJoinMapper.selectPermitByUserId(user.getUserId());
+        List<SysPermit> sysPermits = sysUserJoinMapper.selectPermitByUserId(sysUser.getUserId());
         List<String> authorities = new ArrayList<>();
-        for (Role role : roles) {
+        for (SysRole sysRole : sysRoles) {
             // 拼接角色，Security 中角色纳入权限管理，前缀必须是：ROLE_
-            authorities.add("ROLE_" + role.getRoleKey());
+            authorities.add("ROLE_" + sysRole.getRoleKey());
         }
-        for (Permit permit : permits) {
-            authorities.add(permit.getPermit());
+        for (SysPermit sysPermit : sysPermits) {
+            authorities.add(sysPermit.getPermit());
         }
         UserDetails userDetails =
                 new org.springframework.security.core.userdetails.User(
                         username,
-                        user.getPassword(),
+                        sysUser.getPassword(),
                         AuthorityUtils.createAuthorityList(authorities));
         return userDetails;
     }

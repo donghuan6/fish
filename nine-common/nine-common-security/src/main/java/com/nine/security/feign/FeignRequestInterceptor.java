@@ -15,6 +15,7 @@ import java.util.Map;
 
 /**
  * feign 拦截器
+ * 所有服务内部调用拦截器
  */
 @Slf4j
 @Component
@@ -31,10 +32,12 @@ public class FeignRequestInterceptor implements RequestInterceptor {
         Map<String, String> headerMap = JakartaServletUtil.getHeaderMap(request);
         String userId = headerMap.get(UserToken.USER_ID);
         String username = headerMap.get(UserToken.USERNAME);
-//        String token = headerMap.get(UserToken.USER_TOKEN);
+        String nickName = headerMap.get(UserToken.NICK_NAME);
+        String userKey = headerMap.get(UserToken.USER_KEY);
         template.header(UserToken.USER_ID, userId);
         template.header(UserToken.USERNAME, username);
-//        template.header(UserToken.USER_TOKEN, token);
+        template.header(UserToken.NICK_NAME, nickName);
+        template.header(UserToken.USER_KEY, userKey);
 
         // 微服务内部调用标记
         template.header(Security.FROM_SOURCE, Security.INNER);

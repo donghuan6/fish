@@ -197,22 +197,22 @@ CREATE TABLE users (
 	enabled boolean NOT NULL DEFAULT true
 );
 
-CREATE TABLE roles (
+CREATE TABLE sysRoles (
 	username varchar(50) NOT NULL,
-	role varchar(50) NOT NULL,
-	constraint uk_username_role UNIQUE (username,role)
+	sysRole varchar(50) NOT NULL,
+	constraint uk_username_role UNIQUE (username,sysRole)
 );
 
 CREATE TABLE permissions (
-    role varchar(50) NOT NULL,
+    sysRole varchar(50) NOT NULL,
     resource varchar(512) NOT NULL,
     action varchar(8) NOT NULL,
-    constraint uk_role_permission UNIQUE (role,resource,action)
+    constraint uk_role_permission UNIQUE (sysRole,resource,action)
 );
 
 INSERT INTO users (username, password, enabled) VALUES ('nacos', '$2a$10$EuWPZHzz32dJN7jexM34MOeYirDdFAZm2kuWj7VEOJhhZkDrxfvUu', TRUE);
 
-INSERT INTO roles (username, role) VALUES ('nacos', 'ROLE_ADMIN');
+INSERT INTO sysRoles (username, sysRole) VALUES ('nacos', 'ROLE_ADMIN');
 
 
 /******************************************/

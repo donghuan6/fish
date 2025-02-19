@@ -3,6 +3,7 @@ package com.nine.common.context;
 import cn.hutool.core.convert.Convert;
 import com.alibaba.ttl.TransmittableThreadLocal;
 import com.nine.common.constans.UserToken;
+import com.nine.common.domain.user.UserVo;
 
 import java.util.Map;
 import java.util.Objects;
@@ -46,6 +47,10 @@ public class ContextHolder {
         return Convert.convert(clazz, getLocalMap().get(key));
     }
 
+    public static UserVo getUser() {
+        return get(UserToken.LOGIN_USER, UserVo.class);
+    }
+
     public static Long getUserId() {
         return Convert.toLong(get(UserToken.USER_ID), null);
     }
@@ -70,5 +75,7 @@ public class ContextHolder {
         set(UserToken.USER_KEY, userKey);
     }
 
-
+    public static void setNickName(String nickName) {
+        set(UserToken.NICK_NAME, nickName);
+    }
 }

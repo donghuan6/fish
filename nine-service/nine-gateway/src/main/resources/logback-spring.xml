@@ -22,12 +22,12 @@
 
         <!-- 日志文件输出 -->
         <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-            <!--<file>${LOGS_DIR}/${SERVICE_NAME}.log</file>-->
+            <!--<file>${LOGS_DIR}/${SERVICE_NAME}.sysLog</file>-->
             <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
                 <level>DEBUG</level>
             </filter>
             <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-                <fileNamePattern>${LOGS_DIR}/${SERVICE_NAME}-debug-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+                <fileNamePattern>${LOGS_DIR}/${SERVICE_NAME}-debug-%d{yyyy-MM-dd}.%i.sysLog</fileNamePattern>
                 <maxHistory>30</maxHistory>
                 <maxFileSize>100MB</maxFileSize>
                 <totalSizeCap>10GB</totalSizeCap>
@@ -47,12 +47,12 @@
 
         <!-- 日志文件输出 -->
         <appender name="FILE-ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
-            <!--<file>${LOGS_DIR}/${SERVICE_NAME}-WARN.log</file>-->
+            <!--<file>${LOGS_DIR}/${SERVICE_NAME}-WARN.sysLog</file>-->
             <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
                 <level>ERROR</level>
             </filter>
             <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-                <fileNamePattern>${LOGS_DIR}/${SERVICE_NAME}-error-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+                <fileNamePattern>${LOGS_DIR}/${SERVICE_NAME}-error-%d{yyyy-MM-dd}.%i.sysLog</fileNamePattern>
                 <maxHistory>30</maxHistory>
                 <maxFileSize>100MB</maxFileSize>
                 <totalSizeCap>10GB</totalSizeCap>

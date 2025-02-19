@@ -27,7 +27,7 @@ create table `sys_user`
 insert into sys_user (user_id, username, phone, nick_name, password, login_ip, login_date, create_time, create_by,
                       update_time, update_by)
 values (default, 'admin', '000', 'admin', '123', '127.0.0.1', now(), now(), 'admin', now(), 'admin'),
-       (default, 'user', '111', 'user', '123', '127.0.0.1', now(), now(), 'admin', now(), 'admin');
+       (default, 'sysUser', '111', 'sysUser', '123', '127.0.0.1', now(), now(), 'admin', now(), 'admin');
 
 -- 权限
 create table `sys_permit`
@@ -40,26 +40,27 @@ create table `sys_permit`
     `menu_show`   tinyint      default 0 comment '0-显示,1-隐藏',
     `menu_status` tinyint      default 0 comment '0-正常,1-停用',
     `permit`      varchar(50)  not null comment '权限标识',
+    `permit_sort` tinyint      default 0 comment '排序',
     `icon`        varchar(100) default '' comment '图标',
     `remark`      varchar(100) default '' comment '备注'
 )engine = innodb
   default charset = utf8mb4
   collate = utf8mb4_0900_ai_ci comment ='权限';
 
-insert into sys_permit(permit_id, permit_name, path, parent_id, menu_type, permit, remark)
+insert into sys_permit(permit_id, permit_name, path, parent_id, menu_type, sysPermit, remark)
 values (default, '登录', '/login', 0, 'B', 'login:login', '登录权限'),
        (default, '进入登录页面', '/login', 0, 'B', 'login:toLogin', '进入登录页面权限'),
        (default, '退出', '/logout', 0, 'B', 'logout', '退出权限'),
        (default, '注册', '/register', 0, 'B', 'reg:register', '注册权限'),
        (default, '进入注册页面', '/toRegister', 0, 'B', 'reg:toRegister', '进入注册页面权限'),
        (default, '进入主页面', '/main', 0, 'B', 'main', '进入主页面权限'),
-       (default, '用户管理', '', 0, 'M', 'user:manager', '用户管理权限'),
-       (default, '用户查询', '/user/list', 7, 'C', 'user:list', '用户查询权限'),
-       (default, '用户新增', '/user/add', 7, 'B', 'user:add', '用户新增权限'),
-       (default, '进入用户新增页面', '/user/toAdd', 7, 'B', 'user:toAdd', '进入用户新增页面权限'),
-       (default, '用户修改', '/user/modify', 7, 'B', 'user:modify', '用户修改权限'),
-       (default, '进入用户修改页面', '/user/toModify', 7, 'B', 'user:toModify', '进入用户修改页面权限'),
-       (default, '用户删除', '/user/remove', 7, 'B', 'user:remove', '用户删除权限');
+       (default, '用户管理', '', 0, 'M', 'sysUser:manager', '用户管理权限'),
+       (default, '用户查询', '/sysUser/list', 7, 'C', 'sysUser:list', '用户查询权限'),
+       (default, '用户新增', '/sysUser/add', 7, 'B', 'sysUser:add', '用户新增权限'),
+       (default, '进入用户新增页面', '/sysUser/toAdd', 7, 'B', 'sysUser:toAdd', '进入用户新增页面权限'),
+       (default, '用户修改', '/sysUser/modify', 7, 'B', 'sysUser:modify', '用户修改权限'),
+       (default, '进入用户修改页面', '/sysUser/toModify', 7, 'B', 'sysUser:toModify', '进入用户修改页面权限'),
+       (default, '用户删除', '/sysUser/remove', 7, 'B', 'sysUser:remove', '用户删除权限');
 
 -- 角色
 create table `sys_role`
@@ -74,7 +75,7 @@ create table `sys_role`
 
 insert into sys_role(role_id, role_name, role_key, remark)
 values (default, '管理员', 'admin', '业务权限'),
-       (default, '普通用户', 'user', '基础权限');
+       (default, '普通用户', 'sysUser', '基础权限');
 
 -- 角色与权限
 create table `sys_role_permit`

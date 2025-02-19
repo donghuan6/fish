@@ -17,8 +17,5 @@ public interface Redis {
      */
     String USER_LOGIN_FAIL_PREFIX = "user:login:fail:";
 
-    /**
-     *
-     */
 
 }

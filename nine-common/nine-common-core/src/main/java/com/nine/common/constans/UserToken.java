@@ -36,6 +36,11 @@ public interface UserToken {
     String USERNAME = "username";
 
     /**
+     * 昵称
+     */
+    String NICK_NAME = "nick_name";
+
+    /**
      * 访问 token，请求头中：认证 Authorization 值
      */
     String ACCESS_TOKEN = "access_token";

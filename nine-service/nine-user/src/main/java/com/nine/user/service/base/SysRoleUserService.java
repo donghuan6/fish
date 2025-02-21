@@ -1,7 +1,7 @@
 package com.nine.user.service.base;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.nine.user.dao.SysRoleUser;
+import com.nine.user.domain.SysRoleUser;
 import com.nine.user.mapper.base.SysRoleUserMapper;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

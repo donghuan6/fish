@@ -3,24 +3,24 @@
 
 <mapper namespace="com.nine.user.mapper.customize.SysUserJoinMapper">
 
-    <select id="selectAllRole" resultType="com.nine.user.dao.SysRole">
+    <select id="selectAllRole" resultType="com.nine.user.domain.SysRole">
         select *
         from sys_role
     </select>
 
-    <select id="selectAllPermit" resultType="com.nine.user.dao.SysPermit">
+    <select id="selectAllPermit" resultType="com.nine.user.domain.SysPermit">
         select *
         from sys_permit
     </select>
 
-    <select id="selectRoleByUserId" resultType="com.nine.user.dao.SysRole">
+    <select id="selectRoleByUserId" resultType="com.nine.user.domain.SysRole">
         select distinct t1.*
         from sys_role t1
                  left join sys_role_user t2 on t1.role_id = t2.role_id
         where t2.user_id = #{userId}
     </select>
 
-    <select id="selectPermitByUserId" resultType="com.nine.user.dao.SysPermit">
+    <select id="selectPermitByUserId" resultType="com.nine.user.domain.SysPermit">
         select distinct t1.*
         from sys_permit t1
                  left join sys_role_permit t2 on t1.permit_id = t2.permit_id
@@ -29,7 +29,7 @@
         order by t1.permit_sort, t1.permit_id
     </select>
 
-    <select id="selectPermitByRoleId" resultType="com.nine.user.dao.SysPermit">
+    <select id="selectPermitByRoleId" resultType="com.nine.user.domain.SysPermit">
         select distinct t1.*
         from sys_permit t1
                  left join sys_role_permit t2 on t1.permit_id = t2.permit_id

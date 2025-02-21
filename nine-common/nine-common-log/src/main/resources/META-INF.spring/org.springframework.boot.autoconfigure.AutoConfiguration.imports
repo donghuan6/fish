@@ -1,0 +1,2 @@
+com.nine.log.service.AsyncSysLogService
+com.nine.log.aspect.SysLogAspect

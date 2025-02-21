@@ -5,11 +5,13 @@ import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.cache.annotation.CachingConfigurer;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.cache.RedisCacheWriter;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
@@ -34,21 +36,22 @@ public class RedisConfig implements CachingConfigurer {
      * @param objectMapper           Jackson 的 ObjectMapper 实例，用于序列化和反序列化 Java 对象。
      * @return 配置好的 RedisTemplate 实例，可用于存储和检索对象。
      */
+    @Primary
     @Bean
-    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory,
+    public RedisTemplate<Object, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory,
                                                        ObjectMapper objectMapper) {
-        RedisTemplate<String, Object> template = new RedisTemplate<>();
+        RedisTemplate<Object, Object> template = new RedisTemplate<>();
         template.setConnectionFactory(redisConnectionFactory);
 
         // 使用 StringRedisSerializer 对键进行序列化，确保键的统一编码格式。
         // 使用 string 序列化器
-        template.setKeySerializer(new StringRedisSerializer());
+        template.setKeySerializer(stringRedisSerializer());
         // 对哈希键也使用StringRedisSerializer进行序列化，保持一致性。
-        template.setHashKeySerializer(new StringRedisSerializer());
+        template.setHashKeySerializer(stringRedisSerializer());
 
         // 使用 GenericJackson2JsonRedisSerializer 对值进行序列化，支持 Java 对象的存储和检索。
         // 使用 jackson 序列化器
-        GenericJackson2JsonRedisSerializer genericJackson2JsonRedisSerializer = new GenericJackson2JsonRedisSerializer(objectMapper);
+        GenericJackson2JsonRedisSerializer genericJackson2JsonRedisSerializer = genericJackson2JsonRedisSerializer(objectMapper);
         template.setValueSerializer(genericJackson2JsonRedisSerializer);
         // 对哈希值同样使用该序列化器，确保哈希中的对象也能被正确序列化和反序列化。
         template.setHashValueSerializer(genericJackson2JsonRedisSerializer);
@@ -56,6 +59,24 @@ public class RedisConfig implements CachingConfigurer {
         return template;
     }
 
+    @Bean
+    public StringRedisTemplate stringRedisTemplate(RedisConnectionFactory redisConnectionFactory) {
+        return new StringRedisTemplate(redisConnectionFactory);
+    }
+
+    /**
+     * 返回字符串序列化
+     */
+    private StringRedisSerializer stringRedisSerializer() {
+        return new StringRedisSerializer();
+    }
+
+    /**
+     * 针对对象类型的序列化
+     */
+    public GenericJackson2JsonRedisSerializer genericJackson2JsonRedisSerializer(ObjectMapper objectMapper) {
+        return new GenericJackson2JsonRedisSerializer(objectMapper);
+    }
 
     /**
      * 配置 RedisCacheManager，用于管理缓存。

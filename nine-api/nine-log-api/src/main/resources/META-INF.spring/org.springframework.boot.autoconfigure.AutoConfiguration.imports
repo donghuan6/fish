@@ -1,1 +1,1 @@
-com.nine.sysLog.api.RemoteLogFallbackFactory
+com.nine.log.factory.RemoteLogFallbackFactory

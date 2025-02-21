@@ -22,7 +22,7 @@
 
         <dependency>
             <groupId>com.nine</groupId>
-            <artifactId>nine-common-dao</artifactId>
+            <artifactId>nine-common-mybatis</artifactId>
             <version>1.0.0</version>
         </dependency>
 

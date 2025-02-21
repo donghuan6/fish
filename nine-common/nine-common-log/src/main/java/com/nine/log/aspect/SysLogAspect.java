@@ -72,7 +72,7 @@ public class SysLogAspect {
     private void handlerLog(JoinPoint point, SysLog sysLogAnno, Object jsonResult, Exception e) {
         try {
             HttpServletRequest request = ServletUtil.getRequest();
-            com.nine.log.dao.SysLog sysLog = new com.nine.log.dao.SysLog();
+            com.nine.log.domain.SysLog sysLog = new com.nine.log.domain.SysLog();
             sysLog.setServiceName(sysLogAnno.service());
             sysLog.setTitle(sysLogAnno.title());
             sysLog.setMethod(request.getMethod());

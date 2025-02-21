@@ -3,7 +3,7 @@
 
 <mapper namespace="com.nine.user.mapper.base.SysUserMapper">
 
-    <resultMap id="userMap" type="com.nine.user.dao.SysUser">
+    <resultMap id="userMap" type="com.nine.user.domain.SysUser">
         <result property="userId" column="user_id"/>
         <result property="username" column="username"/>
         <result property="phone" column="phone"/>

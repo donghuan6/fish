@@ -3,7 +3,7 @@
 
 <mapper namespace="com.nine.user.mapper.base.SysRoleMapper">
 
-    <resultMap id="roleMap" type="com.nine.user.dao.SysRole">
+    <resultMap id="roleMap" type="com.nine.user.domain.SysRole">
     </resultMap>
 
 </mapper>

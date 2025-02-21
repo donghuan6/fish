@@ -1,6 +1,6 @@
 package com.nine.log.vo;
 
-import com.nine.log.dao.SysLog;
+import com.nine.log.domain.SysLog;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.io.Serial;

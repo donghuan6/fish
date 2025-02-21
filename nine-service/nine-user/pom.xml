@@ -17,7 +17,7 @@
 
         <dependency>
             <groupId>com.nine</groupId>
-            <artifactId>nine-log-api</artifactId>
+            <artifactId>nine-common-mybatis</artifactId>
             <version>1.0.0</version>
         </dependency>
 
@@ -39,11 +39,11 @@
             <version>1.0.0</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.nine</groupId>
-            <artifactId>nine-common-security</artifactId>
-            <version>1.0.0</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.nine</groupId>-->
+<!--            <artifactId>nine-common-security</artifactId>-->
+<!--            <version>1.0.0</version>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>com.nine</groupId>

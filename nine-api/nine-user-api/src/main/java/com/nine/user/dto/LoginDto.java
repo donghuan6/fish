@@ -21,8 +21,8 @@ public class LoginDto implements Serializable {
 
     @Schema(description = "密码")
     @NotBlank(message = "密码不能为空")
-    @Length(min = 6, max = 20, message = "密码长度在6-20位之间")
-    @Pattern(regexp = Regular.PASSWORD, message = "必须包含数字、字母、特殊字符")
+//    @Length(min = 6, max = 20, message = "密码长度在6-20位之间")
+//    @Pattern(regexp = Regular.PASSWORD, message = "必须包含数字、字母、特殊字符")
     private String password;
 
 }

@@ -12,9 +12,9 @@ import com.nine.common.domain.user.UserVo;
 import com.nine.common.ex.ServiceException;
 import com.nine.common.utils.JwtUtil;
 import com.nine.common.utils.servlet.ServletUtil;
-import com.nine.user.dao.SysPermit;
-import com.nine.user.dao.SysRole;
-import com.nine.user.dao.SysUser;
+import com.nine.user.domain.SysPermit;
+import com.nine.user.domain.SysRole;
+import com.nine.user.domain.SysUser;
 import com.nine.user.dto.LoginDto;
 import com.nine.user.mapper.customize.SysUserJoinMapper;
 import com.nine.user.service.base.ISysUserService;
@@ -22,16 +22,12 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
@@ -41,10 +37,9 @@ import java.util.function.Function;
 public class LoginService {
 
     private final ISysUserService userService;
-    private final PasswordEncoder passwordEncoder;
+//    private final PasswordEncoder passwordEncoder;
     private final RedisTemplate redisTemplate;
-    private SysUserJoinMapper sysUserJoinMapper;
-
+    private final SysUserJoinMapper sysUserJoinMapper;
 
     /**
      * 登录
@@ -111,7 +106,8 @@ public class LoginService {
     }
 
     public boolean checkPassword(String rawPassword, String encodedPassword) {
-        return passwordEncoder.matches(rawPassword, encodedPassword);
+        return Objects.equals(rawPassword, encodedPassword);
+//        return passwordEncoder.matches(rawPassword, encodedPassword);
     }
 
     /**
@@ -121,18 +117,19 @@ public class LoginService {
         int maxCount = 5;
         int lockTime = 5;
         String username = sysUser.getUsername();
-        Object countObj = redisTemplate.opsForValue().get(Redis.USER_LOGIN_FAIL_PREFIX + username);
+        String countKey = Redis.USER_LOGIN_FAIL_PREFIX + username;
+        Object countObj = redisTemplate.opsForValue().get(countKey);
         int failCount = countObj == null ? 0 : Integer.parseInt(countObj.toString());
         if (failCount >= maxCount) {
             throw new ServiceException("密码错误次数过多，请" + lockTime + "分钟后再试");
         }
         // 密码校验成功，清空失败次数
         if (checkPassword(password, sysUser.getPassword())) {
-            redisTemplate.delete(Redis.USER_LOGIN_FAIL_PREFIX + username);
+            redisTemplate.delete(countKey);
             return;
         }
         failCount++;
-        redisTemplate.opsForValue().set(Redis.USER_LOGIN_FAIL_PREFIX + username, failCount, lockTime, TimeUnit.MINUTES);
+        redisTemplate.opsForValue().set(countKey, failCount, lockTime, TimeUnit.MINUTES);
         throw new ServiceException("用户名或密码错误");
 
     }

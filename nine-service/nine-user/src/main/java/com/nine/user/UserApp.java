@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * user 服务
  */
 @MapperScan("com.nine.user.mapper")
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.nine"})
 public class UserApp {
     public static void main(String[] args) {
         SpringApplication.run(UserApp.class, args);

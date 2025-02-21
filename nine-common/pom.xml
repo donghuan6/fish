@@ -19,7 +19,7 @@
     <modules>
         <module>nine-common-core</module>
         <module>nine-common-redis</module>
-        <module>nine-common-dao</module>
+        <module>nine-common-mybatis</module>
         <module>nine-common-swagger</module>
         <module>nine-common-log</module>
         <module>nine-common-security</module>

@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.nine.common.domain.PageR;
 import com.nine.common.domain.R;
 import com.nine.common.utils.excel.ExcelUtil;
-import com.nine.log.dao.SysLog;
+import com.nine.log.domain.SysLog;
 import com.nine.log.dto.SysLogPageDto;
 import com.nine.log.service.SysLogService;
 import com.nine.log.vo.SysLogVo;

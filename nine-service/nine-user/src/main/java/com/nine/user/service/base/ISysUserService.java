@@ -2,8 +2,8 @@ package com.nine.user.service.base;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.nine.dao.service.IBaseService;
-import com.nine.user.dao.SysUser;
+import com.nine.mybatis.service.IBaseService;
+import com.nine.user.domain.SysUser;
 import org.springframework.util.StringUtils;
 
 import java.util.Objects;

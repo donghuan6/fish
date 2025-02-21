@@ -17,6 +17,22 @@ spring:
     url: jdbc:mysql://192.168.0.12:3306/nine_sys?useSSL=false&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai
     username: root
     password: 123456
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 2
+  data:
+    redis:
+      host: 192.168.0.12
+      port: 6379
+      password:
+      database: 0
+      lettuce:
+        pool:
+          enabled: true
+          min-idle: 1
+          max-active: 8
+          max-idle: 8
+          max-wait: 1000
 
 logging:
   level:

@@ -12,6 +12,7 @@ services:
     ports:
       - "8848:8848"
       - "9848:9848"
+    restart: on-failure
     environment:
       - MODE=standalone # 单机版
       # 如果是集群版

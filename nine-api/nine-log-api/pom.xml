@@ -15,7 +15,7 @@
 
         <dependency>
             <groupId>com.nine</groupId>
-            <artifactId>nine-common-swagger</artifactId>
+            <artifactId>nine-common-core</artifactId>
             <version>1.0.0</version>
         </dependency>
 

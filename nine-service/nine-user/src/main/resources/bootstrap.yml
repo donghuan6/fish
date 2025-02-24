@@ -16,6 +16,24 @@ spring:
       maximum-pool-size: 10
       # 用于测试连接是否可用的查询语句
       connection-test-query: select 1
+  data:
+    redis:
+      lettuce:
+        pool:
+          enabled: true
+          min-idle: 1
+          max-active: 8
+          max-idle: 8
+          max-wait: 1000
+  cloud:
+    # nacos config 必须在 nacos discovery 之前
+    nacos:
+      config:
+        # 暂时关闭
+        enabled: false
+        server-addr: 192.168.0.15:8848
+        file-extension: yml
+        namespace: 3e15dead-2938-4c3b-b3c9-7c0748f21507
 
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**/*.xml

@@ -18,19 +18,6 @@
             <version>1.0.0</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.nine</groupId>
-            <artifactId>nine-common-core</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>jakarta.servlet</groupId>
-            <artifactId>jakarta.servlet-api</artifactId>
-            <!-- 设置该依赖为编译时依赖，运行时不传递 -->
-            <scope>provided</scope>
-        </dependency>
-
     </dependencies>
 
 </project>

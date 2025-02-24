@@ -1,0 +1,2 @@
+com.nine.mybatis.config.MybatisPlusConfig
+com.nine.mybatis.config.MybatisGzipFiledInterceptor

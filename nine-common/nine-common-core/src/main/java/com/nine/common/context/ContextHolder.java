@@ -56,11 +56,11 @@ public class ContextHolder {
     }
 
     public static String getUsername() {
-        return Convert.toStr(get(UserToken.USERNAME), null);
+        return Convert.toStr(get(UserToken.USERNAME), "");
     }
 
     public static String getUserKey() {
-        return Convert.toStr(get(UserToken.USER_KEY), null);
+        return Convert.toStr(get(UserToken.USER_KEY), "");
     }
 
     public static void setUserId(Long userId) {

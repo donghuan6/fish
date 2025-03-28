@@ -3,9 +3,9 @@ package com.nine.log.domain;
 import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.annotation.*;
 import com.nine.common.annotation.Excel;
-import com.nine.mybatis.annotation.Gzip;
 import com.nine.log.dto.SysLogPageDto;
 import com.nine.log.vo.SysLogVo;
+import com.nine.mybatis.annotation.Gzip;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
@@ -93,6 +93,16 @@ public class SysLog {
     @TableField(fill = FieldFill.INSERT)
     private String createBy;
 
+
+    public SysLog setFailStatus() {
+        this.status = 1;
+        return this;
+    }
+
+    public SysLog setOkStatus() {
+        this.status = 0;
+        return this;
+    }
 
     public SysLog convert(SysLogPageDto dto) {
         SysLog sysLog = new SysLog();

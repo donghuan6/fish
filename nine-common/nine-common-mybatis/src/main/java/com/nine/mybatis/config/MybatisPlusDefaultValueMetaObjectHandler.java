@@ -1,6 +1,7 @@
 package com.nine.mybatis.config;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
+import com.nine.common.context.ContextHolder;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.reflection.MetaObject;
 
@@ -19,7 +20,7 @@ public class MybatisPlusDefaultValueMetaObjectHandler implements MetaObjectHandl
         this.strictInsertFill(metaObject, "createTime",
                 LocalDateTime.class, LocalDateTime.now());
         this.strictInsertFill(metaObject, "createBy",
-                String.class, "");
+                String.class, ContextHolder.getUsername());
     }
 
     @Override
@@ -27,6 +28,6 @@ public class MybatisPlusDefaultValueMetaObjectHandler implements MetaObjectHandl
         this.strictInsertFill(metaObject, "updateTime",
                 LocalDateTime.class, LocalDateTime.now());
         this.strictInsertFill(metaObject, "updateBy",
-                String.class, "");
+                String.class, ContextHolder.getUsername());
     }
 }

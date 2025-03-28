@@ -32,8 +32,12 @@ public class R<T> implements Serializable {
     private final String msg;
     private final T data;
 
+    public R() {
+        this(SUCCESS_CODE, null, "ok");
+    }
+
     public R(T data) {
-        this(SUCCESS_CODE, data, null);
+        this(SUCCESS_CODE, data, "ok");
     }
 
     public R(T data, String msg) {

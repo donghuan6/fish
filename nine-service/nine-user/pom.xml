@@ -23,6 +23,12 @@
 
         <dependency>
             <groupId>com.nine</groupId>
+            <artifactId>nine-log-api</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.nine</groupId>
             <artifactId>nine-common-log</artifactId>
             <version>1.0.0</version>
         </dependency>

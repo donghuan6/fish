@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deploy
+  namespace: default
+  labels:
+    app: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  progressDeadlineSeconds: 600 #进度超时时间，单位秒，默认为 600 秒
+  revisionHistoryLimit: 10 #保留的历史版本数量，默认为 10
+  strategy: #更新策略
+    type: RollingUpdate #滚动更新策略
+    rollingUpdate: #滚动更新策略配置
+      maxUnavailable: 1 #最大不可用数量，默认为 25%
+      maxSurge: 1 #定义了在滚动更新过程中，允许超出 replicas 定义数量的额外 Pod 最大数量。
+      #这里设置为 1，表示在更新过程中，最多可以额外创建 1 个 Pod 来加速更新过程。
+      #如果没有设置，默认值是 Deployment 中 replicas 的 25%。
+  template: #pod模板
+    metadata: #pod元数据
+      labels: #pod标签
+        app: nginx
+    spec: #pod配置
+      containers:
+        - name: nginx
+          image: nginx
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              memory: "128Mi" #最小 128Mi 内存大小
+              cpu: "0.5" #0.5 核心数
+            limits:
+              memory: "256Mi" #最大 256Mi 内存大小
+              cpu: "1" #1 核心数

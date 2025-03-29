@@ -1,0 +1,50 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  ports:
+    - port: 80
+      name: web
+  clusterIP: None # 不分配集群IP
+  selector:
+    app: nginx
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: web
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  serviceName: "nginx" #使用哪个 service 来管理 dns
+  replicas: 2 #副本数量
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+              name: web
+          volumeMounts: #挂载卷
+            - mountPath: /usr/share/nginx/html #挂载路径
+              name: www #卷名称
+  volumeClaimTemplates: #卷模板
+    - metadata:
+        name: www #卷名称
+      spec:
+        accessModes:
+          - "ReadWriteOnce" #读写一次
+        resources:
+          requests:
+            storage: 100Mi #请求的存储空间大小
+        storageClassName: "nfs-client" #存储类名称

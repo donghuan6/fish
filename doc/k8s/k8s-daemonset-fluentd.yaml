@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: fluentd
+spec:
+  selector:
+    matchLabels:
+      app: logging
+  template:
+    metadata:
+      name: fluentd
+      labels:
+        app: logging
+        id: fluentd
+    spec:
+      nodeSelector: #节点选择器
+        kubernetes.io/os: linux #选择 linux 节点
+        type: microservices #选择 microservices 节点
+      containers:
+        - name: fluentd-es
+          image: agilestacks/fluentd-elasticsearch:v1.3.0
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: FLUENTD_ARGS
+              value: -qq
+          volumeMounts: #挂载卷
+            - mountPath: /var/lib/docker/containers #挂载路径
+              name: containers #卷名称
+            - mountPath: /var/log #挂载路径
+              name: varlog #卷名称
+      volumes: #卷模板
+        - name: containers #卷名称
+          hostPath: #主机路径
+            path: /var/lib/docker/containers #主机路径
+        - name: varlog #卷名称
+          hostPath: #主机路径
+            path: /var/log #主机路径

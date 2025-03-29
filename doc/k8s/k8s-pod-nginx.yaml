@@ -1,0 +1,66 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx #pod名称
+  namespace: default #命名空间
+  labels: #pod标签
+    app: nginx
+    type: web
+    version: "1.0.0"
+spec: #pod配置
+  terminationGracePeriodSeconds: 30 #当容器停止时等待的时间
+  restartPolicy: OnFailure #重启策略,当容器退出时重启
+  containers: #容器配置
+  - name: nginx #容器名称
+    image: nginx #镜像
+    imagePullPolicy: IfNotPresent #镜像拉取策略,如果本地没有则拉取
+    workingDir: /usr/share/nginx/html #工作目录
+    command: ["nginx", "-g", "daemon off;"] #启动命令，在容器内关闭守护进程
+    env: #环境变量
+    - name: TZ #时区
+      value: Asia/Shanghai
+    resources: #资源限制
+      requests: #请求资源
+        memory: "128Mi" #内存
+        cpu: "0.5" #CPU
+      limits: #限制资源
+        memory: "256Mi" #内存
+        cpu: "1" #CPU
+    ports:
+    - containerPort: 80 #容器端口
+      protocol: TCP #协议
+      name: http #端口名称
+    startupProbe: #启动探针
+      httpGet: #HTTP请求
+        path: / #路径
+        port: 80 #端口
+        scheme: HTTP #协议
+      initialDelaySeconds: 10 #初始延迟
+      periodSeconds: 10 #间隔时间
+      timeoutSeconds: 1 #超时时间
+      failureThreshold: 3 #失败次数
+    livenessProbe: #存活探针
+      httpGet: #HTTP请求
+        path: / #路径
+        port: 80 #端口
+        scheme: HTTP #协议
+      initialDelaySeconds: 10 #初始延迟
+      periodSeconds: 10 #间隔时间
+      timeoutSeconds: 1 #超时时间
+      failureThreshold: 3 #失败次数
+    readinessProbe: #就绪探针
+      httpGet: #HTTP请求
+        path: / #路径
+        port: 80 #端口
+        scheme: HTTP #协议
+      initialDelaySeconds: 10 #初始延迟
+      periodSeconds: 10 #间隔时间
+      timeoutSeconds: 1 #超时时间
+      failureThreshold: 3 #失败次数
+    lifecycle: #生命周期
+      preStop: #停止前执行
+        exec: #执行命令
+          command: ["/bin/sh", "-c", "nginx -s quit"] #命令
+      postStart: #启动后执行
+        exec: #执行命令
+          command: ["/bin/sh", "-c", "echo '<h1>启动后执行</h1>' > /usr/share/nginx/html/postStart.html"] #命令
